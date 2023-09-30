@@ -3,11 +3,7 @@ import Link from "next/link";
 import { Nanum_Gothic } from 'next/font/google'
 import {AiOutlineMenu, AiOutlineClose} from "react-icons/ai";
 import {useState} from "react";
-
-const gothicBold = Nanum_Gothic({
-    subsets: ['latin'],
-    weight: '800'
-})
+import {LAYOUT} from "@/constatns/layout";
 
 type LinkAttr = {
     to: string
@@ -16,6 +12,10 @@ type LinkAttr = {
 
 const Header = () => {
     const [isOpenMenu, setIsOpenMenu] = useState(false)
+
+    const toggleOpenMenu = () => {
+        setIsOpenMenu(prev => !prev)
+    }
     const links: LinkAttr[] = [
         {
             to: '/',
@@ -35,11 +35,11 @@ const Header = () => {
         },
     ]
 
-    return <header className={'w-full fixed top-0 left-0 z-50 flex items-center border-2 bg-white h-16'}>
-        <div className={'w-full flex justify-between p-4 '}>
-            <h1 className={`${gothicBold.className} text-xl font-bold cur`}>
+    return <header className={`w-full fixed top-0 left-0 z-50 flex justify-center items-center border-y-2 bg-white h-${LAYOUT.헤더높이}`}>
+        <div className={'container flex justify-between p-4 '}>
+            <h1 className={'text-xl font-bold'}>
                 <Link href={'/'}>
-                    FETH'S BLOG
+                    Taehun's BLOG
                 </Link>
             </h1>
             <nav className={'flex gap-4 text-sm hidden md:flex'}>
@@ -49,20 +49,11 @@ const Header = () => {
                     )
                 }
             </nav>
-            {
-                isOpenMenu?
-                    <div className={'md:hidden flex items-center cursor-pointer'}
-                         onClick={() => setIsOpenMenu(prev => !prev)}
-                    >
-                        <AiOutlineClose />
-                    </div>
-                    :
-                    <div className={'md:hidden flex items-center cursor-pointer'}
-                         onClick={() => setIsOpenMenu(prev => !prev)}
-                    >
-                        <AiOutlineMenu />
-                    </div>
-            }
+            <div className={'md:hidden flex items-center cursor-pointer'}
+                 onClick={toggleOpenMenu}
+            >
+                {isOpenMenu? <AiOutlineClose /> : <AiOutlineMenu />}
+            </div>
         </div>
         {
             isOpenMenu &&
