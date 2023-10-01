@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Profile from "@/components/Profile";
 import {getPosts} from "@/components/service/posts";
 import PostSection from "@/components/post/PostSection";
+import PostSlides from "@/components/post/PostSlides";
 
 export default async function Home() {
     const posts = await getPosts()
@@ -12,7 +13,7 @@ export default async function Home() {
     <div>
         <Profile />
         <PostSection title={'Featured'} posts={featuredPosts} wrapperClass={'mt-6'}/>
-        <PostSection title={'You may like'} posts={otherPosts} wrapperClass={'mt-6'}/>
+        <PostSlides title={'You may like'} posts={otherPosts} wrapperClass={'mt-6'}/>
     </div>
   )
 }
