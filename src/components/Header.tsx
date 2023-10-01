@@ -35,7 +35,7 @@ const Header = () => {
         },
     ]
 
-    return <header className={`w-full fixed top-0 left-0 z-50 flex justify-center items-center border-y-2 bg-white h-${LAYOUT.헤더높이}`}>
+    return <header className={`w-full fixed top-0 left-0 z-50 flex justify-center items-center border-y-2 bg-white h-16`}>
         <div className={'container flex justify-between p-4 '}>
             <h1 className={'text-xl font-bold'}>
                 <Link href={'/'}>
